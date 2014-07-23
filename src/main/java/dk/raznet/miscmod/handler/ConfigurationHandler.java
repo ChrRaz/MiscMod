@@ -19,26 +19,28 @@ import java.lang.reflect.Modifier;
  * Created by ChrRaz on 21/07/2014.
  * The use of reflection in regards to config is based on a concept by OpenMods
  */
-public class ConfigurationHandler {
+public class ConfigurationHandler
+{
 
 	public static final String rootName = "root";
 
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.FIELD)
-	public static @interface ConfigOptions {
+	public static @interface ConfigOptions
+	{
 		/**
 		 * The category of the property
 		 * All categories are placed under a "root" category
 		 * Subcategories are split using a dot (.)
 		 * For example the category for someProperty:
 		 * root {
-		 *     some {
-		 *         category {
-		 *             someProperty = ...
-		 *         }
-		 *     }
+		 * some {
+		 * category {
+		 * someProperty = ...
 		 * }
-		 *
+		 * }
+		 * }
+		 * <p/>
 		 * is written as "some.category"
 		 * If ommitted the property will be placed directly under "root"
 		 */
@@ -48,7 +50,8 @@ public class ConfigurationHandler {
 
 	}
 
-	public static class ConfigValues {
+	public static class ConfigValues
+	{
 		/*
 		 * All config options go here as defined variables
 		 * All variables must be PUBLIC STATIC
@@ -69,10 +72,12 @@ public class ConfigurationHandler {
 
 	public static Configuration config;
 
-	public static void init(File configFile) {
+	public static void init(File configFile)
+	{
 		FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
 
-		if (config == null) {
+		if (config == null)
+		{
 			config = new Configuration(configFile);
 			loadConfig();
 		}
@@ -80,15 +85,19 @@ public class ConfigurationHandler {
 	}
 
 	@SubscribeEvent
-	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-		if (event.modID.equalsIgnoreCase(Reference.MOD_ID)) {
+	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event)
+	{
+		if (event.modID.equalsIgnoreCase(Reference.MOD_ID))
+		{
 			loadConfig();
 		}
 	}
 
-	private static void loadConfig() {
+	private static void loadConfig()
+	{
 
-		for (Field field : ConfigValues.class.getFields()) {
+		for (Field field : ConfigValues.class.getFields())
+		{
 			// Skip constants
 			if (Modifier.isFinal(field.getModifiers()))
 				continue;
@@ -98,50 +107,64 @@ public class ConfigurationHandler {
 			String category = Configuration.CATEGORY_GENERAL;
 			String comment = null;
 
-			if (options != null) {
+			if (options != null)
+			{
 				String strippedCategory = StringUtils.strip(options.category(), Configuration.CATEGORY_SPLITTER);
 				category = rootName + (strippedCategory.length() == 0 ? "" : Configuration.CATEGORY_SPLITTER) + strippedCategory;
 				if (!options.comment().equals(""))
 					comment = options.comment();
 			}
 
-			try {
-				if (configType.equals(boolean.class)) {
+			try
+			{
+				if (configType.equals(boolean.class))
+				{
 					field.set(null, config.get(category, field.getName(), (Boolean) field.get(null), comment).getBoolean());
 
-				} else if (configType.equals(boolean[].class)) {
+				} else if (configType.equals(boolean[].class))
+				{
 					field.set(null, config.get(category, field.getName(), (boolean[]) field.get(null), comment).getBooleanList());
 
-				} else if (configType.equals(int.class)) {
+				} else if (configType.equals(int.class))
+				{
 					field.set(null, config.get(category, field.getName(), (Integer) field.get(null), comment).getInt());
 
-				} else if (configType.equals(int[].class)) {
+				} else if (configType.equals(int[].class))
+				{
 					field.set(null, config.get(category, field.getName(), (int[]) field.get(null), comment).getIntList());
 
-				} else if (configType.equals(double.class)) {
+				} else if (configType.equals(double.class))
+				{
 					field.set(null, config.get(category, field.getName(), (Double) field.get(null), comment).getDouble());
 
-				} else if (configType.equals(double[].class)) {
+				} else if (configType.equals(double[].class))
+				{
 					field.set(null, config.get(category, field.getName(), (double[]) field.get(null), comment).getDoubleList());
 
-				} else if (configType.equals(String.class)) {
+				} else if (configType.equals(String.class))
+				{
 					field.set(null, config.get(category, field.getName(), (String) field.get(null), comment).getString());
 
-				} else if (configType.equals(String[].class)) {
+				} else if (configType.equals(String[].class))
+				{
 					field.set(null, config.get(category, field.getName(), (String[]) field.get(null), comment).getStringList());
 
-				} else if (configType.equals(double.class)) {
+				} else if (configType.equals(double.class))
+				{
 					field.set(null, config.get(category, field.getName(), (Double) field.get(null), comment).getDouble());
 
-				} else if (configType.equals(double[].class)) {
+				} else if (configType.equals(double[].class))
+				{
 					field.set(null, config.get(category, field.getName(), (double[]) field.get(null), comment).getDoubleList());
 
 				}
-			} catch (IllegalAccessException e) {
+			} catch (IllegalAccessException e)
+			{
 				e.printStackTrace();
 			}
 
-			if (config.hasChanged()) {
+			if (config.hasChanged())
+			{
 				config.save();
 			}
 		}

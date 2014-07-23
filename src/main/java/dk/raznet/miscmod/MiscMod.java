@@ -1,6 +1,5 @@
 package dk.raznet.miscmod;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -14,7 +13,8 @@ import dk.raznet.miscmod.reference.Reference;
  * Created by ChrRaz on 7/20/14.
  */
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
-public class MiscMod {
+public class MiscMod
+{
 
 	@Mod.Instance(Reference.MOD_ID)
 	public static MiscMod instance;
@@ -23,7 +23,8 @@ public class MiscMod {
 	public static IProxy proxy;
 
 	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
+	public void preInit(FMLPreInitializationEvent event)
+	{
 		ConfigurationHandler.init(event.getSuggestedConfigurationFile());
 
 		/*
@@ -37,12 +38,14 @@ public class MiscMod {
 	}
 
 	@Mod.EventHandler
-	public void init(FMLInitializationEvent event) {
+	public void init(FMLInitializationEvent event)
+	{
 
 	}
 
 	@Mod.EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
+	public void postInit(FMLPostInitializationEvent event)
+	{
 
 	}
 }

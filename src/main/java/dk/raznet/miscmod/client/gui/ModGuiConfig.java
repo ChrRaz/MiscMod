@@ -6,14 +6,15 @@ import dk.raznet.miscmod.reference.Reference;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.common.config.ConfigElement;
-import net.minecraftforge.common.config.Configuration;
 
 /**
  * Created by ChrRaz on 22/07/2014.
  */
-public class ModGuiConfig extends GuiConfig {
+public class ModGuiConfig extends GuiConfig
+{
 
-	public ModGuiConfig(GuiScreen guiScreen){
+	public ModGuiConfig(GuiScreen guiScreen)
+	{
 		super(guiScreen,
 				new ConfigElement(ConfigurationHandler.config.getCategory(ConfigurationHandler.rootName)).getChildElements(),
 				Reference.MOD_ID,

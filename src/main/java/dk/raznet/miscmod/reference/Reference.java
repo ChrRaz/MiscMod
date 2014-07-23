@@ -3,7 +3,8 @@ package dk.raznet.miscmod.reference;
 /**
  * Created by ChrRaz on 7/20/14.
  */
-public class Reference {
+public class Reference
+{
 	public static final String MOD_ID = "MiscMod";
 	public static final String MOD_NAME = "MiscMod";
 	public static final String MOD_VERSION = "1.7.10-0.1.0";
