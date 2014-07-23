@@ -1,0 +1,12 @@
+#By default exclude everything but look in subfolders for .gitignore files
+*
+!*/
+
+#Whitelist certain files in root
+!.gitignore
+!LICENSE
+!README.md
+!build.gradle
+!gradle.properties
+!gradlew
+!gradlew.bat
