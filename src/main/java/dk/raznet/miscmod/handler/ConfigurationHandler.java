@@ -104,7 +104,7 @@ public class ConfigurationHandler
 
 			Class<?> configType = field.getType();
 			ConfigOptions options = field.getAnnotation(ConfigOptions.class);
-			String category = Configuration.CATEGORY_GENERAL;
+			String category = ConfigurationHandler.rootName;
 			String comment = null;
 
 			if (options != null)
