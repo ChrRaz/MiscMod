@@ -1,1 +1,3 @@
 miscmod.configgui.ConfigTitle=MiscMod Configs
+
+tile.MiscMod:BlockTest.name=Test block

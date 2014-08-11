@@ -6,6 +6,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import dk.raznet.miscmod.handler.ConfigurationHandler;
+import dk.raznet.miscmod.init.ModBlocks;
 import dk.raznet.miscmod.init.ModItems;
 import dk.raznet.miscmod.proxy.IProxy;
 import dk.raznet.miscmod.reference.Reference;
@@ -27,8 +28,9 @@ public class MiscMod
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		ConfigurationHandler.init(event.getSuggestedConfigurationFile());
-		ModItems.register();
 
+		ModItems.register();
+		ModBlocks.register();
 		/*
 		for (Field field : ConfigurationHandler.ConfigValues.class.getFields())
 			try {
